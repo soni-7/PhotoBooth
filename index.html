@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Booth</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>📸 Photo Booth</h1>
+        
+        <div class="camera-section">
+            <video id="video" autoplay playsinline></video>
+            <canvas id="canvas" style="display: none;"></canvas>
+        </div>
+        
+        <div class="controls">
+            <button id="startCamera" class="btn btn-primary">Start Camera</button>
+            <button id="stopCamera" class="btn btn-warning" disabled>⏹️ Stop Camera</button>
+            <button id="capturePhoto" class="btn btn-success" disabled>📸 Capture Photo</button>
+            <button id="downloadPhoto" class="btn btn-secondary" disabled>📥 Download</button>
+            <button id="clearPhoto" class="btn btn-danger" disabled>🗑️ Clear</button>
+            <button id="createCollage" class="btn btn-special" disabled>🖼️ Create Collage</button>
+        </div>
+        
+        <div class="filters">
+            <h3>Filters:</h3>
+            <button class="filter-btn" data-filter="none">None</button>
+            <button class="filter-btn" data-filter="grayscale">Grayscale</button>
+            <button class="filter-btn" data-filter="sepia">Sepia</button>
+            <button class="filter-btn" data-filter="invert">Invert</button>
+            <button class="filter-btn" data-filter="blur">Blur</button>
+            <button class="filter-btn" data-filter="vintage">Vintage</button>
+            <button class="filter-btn" data-filter="bright">Bright</button>
+            <button class="filter-btn" data-filter="dark">Dark</button>
+            <button class="filter-btn" data-filter="contrast">High Contrast</button>
+            <button class="filter-btn" data-filter="saturate">Saturated</button>
+            <button class="filter-btn" data-filter="hue-rotate">Hue Shift</button>
+            <button class="filter-btn" data-filter="cyberpunk">Cyberpunk</button>
+            <button class="filter-btn" data-filter="cool">Cool Blue</button>
+            <button class="filter-btn" data-filter="warm">Warm Orange</button>
+            <button class="filter-btn" data-filter="warm-green">Warm Green</button>
+            <button class="filter-btn" data-filter="purple">Purple Haze</button>
+            <button class="filter-btn" data-filter="matrix">Matrix</button>
+            <button class="filter-btn" data-filter="nostalgia">Nostalgia</button>
+            <button class="filter-btn" data-filter="dreamy">Dreamy</button>
+        </div>
+        
+        <div class="photo-preview" id="photoPreview" style="display: none;">
+            <h3>Captured Photo:</h3>
+            <img id="capturedImage" alt="Captured photo">
+        </div>
+        
+        <div class="photo-gallery" id="photoGallery">
+            <h3>Photo Gallery:</h3>
+            <div id="galleryContainer"></div>
+        </div>
+        
+        <!-- Collage Modal -->
+        <div id="collageModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>🖼️ Create Photo Collage</h3>
+                    <button class="close-btn" onclick="photoBooth.closeCollageModal()">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="collage-options">
+                        <h4>Select Layout:</h4>
+                        <div class="layout-options">
+                            <button class="layout-btn" data-layout="grid2x2">2x2 Grid</button>
+                            <button class="layout-btn" data-layout="grid3x3">3x3 Grid</button>
+                            <button class="layout-btn" data-layout="strip">Film Strip</button>
+                            <button class="layout-btn" data-layout="polaroid">Polaroid Style</button>
+                        </div>
+                    </div>
+                    <div class="collage-selection">
+                        <h4>Select Photos (max 9):</h4>
+                        <div id="collagePhotoSelection"></div>
+                    </div>
+                    <div class="collage-preview">
+                        <h4>Preview:</h4>
+                        <canvas id="collageCanvas" width="800" height="600"></canvas>
+                    </div>
+                    <div class="collage-controls">
+                        <button id="generateCollage" class="btn btn-primary">Generate Collage</button>
+                        <button id="downloadCollage" class="btn btn-success" disabled>Download Collage</button>
+                        <button id="addToGallery" class="btn btn-secondary" disabled>Add to Gallery</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
